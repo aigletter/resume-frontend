@@ -3,7 +3,7 @@ services:
   npm:
     build: .
     container_name: resume-frontend-npm
-    restart: unless-stopped
+    #restart: unless-stopped
     working_dir: /var/www
     volumes:
       - ./:/var/www
@@ -12,7 +12,7 @@ services:
     ports:
       - "5176:5173"
     extra_hosts:
-      - "dictionary.loc:host-gateway"
+      - "resume.loc:host-gateway"
     environment:
       - APP_ENV=${APP_ENV:-prod}
     entrypoint: ['/entrypoint.sh']
@@ -38,7 +38,7 @@ services:
     entrypoint: ['/entrypoint.sh']
     environment:
       - APP_ENV=${APP_ENV:-prod}
-      - NPM_COMMAND={$NPM_COMMAND:-up}
+      - NPM_COMMAND=${NPM_COMMAND:-up}
 
 networks:
   default:
